@@ -1,0 +1,52 @@
+{
+  "name": "elysia-decorators",
+  "description": "Plugin for Elysia for adding Typescript decorators",
+  "version": "0.0.1",
+  "author": {
+    "name": "Gaurish Sethia",
+    "url": "https://github.com/gaurishhs",
+    "email": "gaurishhs@yahoo.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gaurishhs/elysia-decorators"
+  },
+  "main": "./dist/index.js",
+  "exports": {
+    "require": "./dist/index.js",
+    "import": "./dist/index.js",
+    "node": "./dist/index.js",
+    "default": "./dist/index.js"
+  },
+  "types": "./dist/index.d.ts",
+  "bugs": "https://github.com/gaurishhs/elysia-decorators/issues",
+  "homepage": "https://github.com/gaurishhs/elysia-decorators",
+  "keywords": [
+    "elysia",
+    "typescript",
+    "controllers",
+    "decorators"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "dev": "bun run --hot example/index.ts",
+    "test": "bun wiptest",
+    "build": "rimraf dist && tsc --project tsconfig.esm.json",
+    "release": "npm run build && npm run test && npm publish --access public"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@elysiajs/cookie": "^0.1.1",
+    "@sinclair/typebox": "^0.25.21",
+    "@types/node": "^18.11.7",
+    "bun-types": "^0.5.7",
+    "eslint": "^8.26.0",
+    "elysia": "^0.3.0-rc.1",
+    "typescript": "^4.9.4"
+  },
+  "peerDependencies": {
+    "elysia": ">= 0.2.0"
+  }
+}
