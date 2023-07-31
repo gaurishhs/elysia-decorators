@@ -41,7 +41,7 @@
     "@elysiajs/cookie": "^0.1.1",
     "@sinclair/typebox": "^0.25.21",
     "@types/node": "^18.11.7",
-    "bun-types": "^0.5.7",
+    "bun-types": "^0.7.1",
     "elysia": "^0.3.0-rc.1",
     "eslint": "^8.26.0",
     "typescript": "^4.9.4"
