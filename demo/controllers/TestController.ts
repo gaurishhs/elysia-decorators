@@ -11,7 +11,7 @@ export class TestController {
             })
         }
     })
-    public index() {
-        return 'Hello World!';
+    public index({ query }: { query: { name: string } }) {
+        return 'Hello ' + query.name;
     }
 }

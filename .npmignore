@@ -4,13 +4,11 @@
 .cjs.swcrc
 .es.swcrc
 bun.lockb
-
 node_modules
 tsconfig.json
 pnpm-lock.yaml
 jest.config.js
-nodemon.json
-
+DOC.md
 example
 tests
 src

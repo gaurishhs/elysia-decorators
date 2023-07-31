@@ -1,6 +1,6 @@
 # elysia-decorators
 
-- This plugin adds decorator and controller-based routing support to kingworld.
+- This plugin adds decorator and controller-based routing support to elysia.
 
 ## Installation
 
