@@ -19,7 +19,7 @@ import { Elysia } from "elysia";
 // /users prefix
 @Controller("/users/")
 class UsersController {
-  @Get()
+  @Get("")
   index() {
     return "Hello World";
   }
