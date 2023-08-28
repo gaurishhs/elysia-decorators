@@ -1,6 +1,7 @@
 # elysia-decorators
 
 - This plugin adds decorator and controller-based routing support to elysia.
+- [Documentation and Usage](https://github.com/gaurishhs/elysia-decorators/wiki)
 
 ## Installation
 
