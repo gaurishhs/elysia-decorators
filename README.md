@@ -3,11 +3,8 @@
 - This plugin adds decorator and controller-based routing support to elysia.
 - [Documentation and Usage](https://github.com/gaurishhs/elysia-decorators/wiki)
 
-{% note %}
-
-**Note:** You need to enable [experimentalDecorators](https://www.typescriptlang.org/tsconfig#experimentalDecorators) compiler option for this plugin to work.
-
-{% endnote %}
+> **Note:**
+> You need to enable [experimentalDecorators](https://www.typescriptlang.org/tsconfig#experimentalDecorators) compiler option for this plugin to work.
 
 ## Installation
 
