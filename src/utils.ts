@@ -1,11 +1,12 @@
 import * as path from 'path';
+import { Glob } from 'bun';
 
 /**
  * Loads all exported classes from the given directory.
  * @see https://github.com/typestack/routing-controllers/blob/master/src/util/importClassesFromDirectories.ts
  */
 export function importClassesFromDirectories(directories: string[], formats = ['.js', '.ts']): Function[] {
-  const loadFileClasses = function (exported: any, allLoaded: Function[]) {
+  const loadFileClasses = function(exported: any, allLoaded: Function[]) {
     if (exported instanceof Function) {
       allLoaded.push(exported);
     } else if (exported instanceof Array) {
@@ -18,8 +19,12 @@ export function importClassesFromDirectories(directories: string[], formats = ['
   };
 
   const allFiles = directories.reduce((allDirs, dir) => {
+    const glob = new Glob(path.basename(dir));
+    const things = Array.from(glob.scanSync({
+      cwd: path.dirname(dir),
+    })).map(file => path.join(path.dirname(dir), file));
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    return allDirs.concat(require('glob').sync(path.normalize(dir)));
+    return allDirs.concat(things);
   }, [] as string[]);
 
   const dirs = allFiles
