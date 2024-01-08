@@ -1,5 +1,7 @@
 # elysia-decorators
 
+![badge](https://github.com/gaurishhs/elysia-decorators/actions/workflows/npm-publish.yml/badge.svg)
+
 - This plugin adds decorator and controller-based routing support to elysia.
 - [Documentation and Usage](https://github.com/gaurishhs/elysia-decorators/wiki)
 
@@ -14,7 +16,9 @@ bun add elysia-decorators
 
 ## Example
 
-- [Demo](https://github.com/gaurishhs/kingworld-controllers/tree/main/demo)
+- [Demo](https://github.com/gaurishhs/elysia-controllers/tree/main/demo)
+
+When using File-based controllers Bun v1.0.14 or more is required since it depends on `Bun.Glob`
 
 ```ts
 import { Controller, Get, decorators } from "elysia-decorators";
