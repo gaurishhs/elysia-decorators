@@ -7,7 +7,11 @@
 > **Note:**
 > You need to enable [experimentalDecorators](https://www.typescriptlang.org/tsconfig#experimentalDecorators) compiler option for this plugin to work.
 
+Please consider starring the project to show your ❤️ and support.
+
 ## Installation
+
+Requires Bun v1.0.14 when using file-based controllers due to dependence on `Bun.Glob` introduced in v1.0.14.
 
 ```bash
 bun add elysia-decorators
