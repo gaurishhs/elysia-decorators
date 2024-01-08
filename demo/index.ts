@@ -1,7 +1,3 @@
-/**
- * @IMPORTANT: Requires Glob to be installed, run `bun add glob` to install
- */
-
 import Elysia from "elysia";
 import { decorators } from "../src";
 
