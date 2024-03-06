@@ -1,4 +1,4 @@
-import { HTTPMethod, LocalHook, TypedSchema } from "elysia";
+import { HTTPMethod, LocalHook, InputSchema } from "elysia";
 
 interface Container {
     get(identifier: string | symbol): Function;
@@ -11,9 +11,17 @@ export interface ControllersLoaderOptions {
 
 export const SupportedMethodFunctions = ['get', 'post', 'put', 'delete', 'patch', 'head', 'options', 'custom'];
 
-export interface ElysiaRoute<Schema extends TypedSchema = {}, Path extends string = string> {
+export interface Hook extends LocalHook<InputSchema, any, any, any, InputSchema, any> {}
+export interface Config {
+  config: {
+    allowMeta?: boolean
+  }
+}
+export interface RouteOptions extends Hook, Partial<Config> {}
+
+export interface ElysiaRoute {
     method: HTTPMethod;
     path: string;
     methodName: string | symbol;
-    hook?: LocalHook<Schema, any, Path>;
+    options?: RouteOptions,
 }
