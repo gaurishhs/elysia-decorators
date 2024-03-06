@@ -5,11 +5,9 @@ import { t } from "elysia";
 @Controller()
 export class TestController {
     @Get('/', {
-        schema: {
-            query: t.Object({
-                name: t.String()
-            })
-        }
+        body: t.Object({
+            abc: t.String()
+        })
     })
     public index({ query }: { query: { name: string } }) {
         return 'Hello ' + query.name;
