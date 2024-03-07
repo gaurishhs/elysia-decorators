@@ -1,7 +1,7 @@
 {
   "name": "elysia-decorators",
   "description": "Plugin for Elysia for adding Typescript decorators",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": {
     "name": "Gaurish Sethia",
     "url": "https://github.com/gaurishhs",
