@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { ControllersLoaderOptions, ElysiaRoute, SupportedMethodFunctions } from './types';
+import { ControllersLoaderOptions, ElysiaRoute } from './types';
 import { importClassesFromDirectories } from './utils';
 import Elysia from 'elysia';
 
@@ -15,10 +15,7 @@ export class ControllerManager {
             const prefix = Reflect.getMetadata('prefix', controller);
             const routes: Array<ElysiaRoute> = Reflect.getMetadata('routes', controller);
             routes.forEach((route) => {
-                return SupportedMethodFunctions.includes(route.method.toLowerCase()) ?
-                    // @ts-ignore
-                    app[route.method.toLowerCase() as any](`${prefix}${route.path}`, (ctx: any) => Promise.resolve(instance[route.methodName](ctx)), route.options)
-                    : app.route(route.method, `${prefix}${route.path}`, (ctx: any) => Promise.resolve(instance[route.methodName](ctx)), route.options as any);
+                return app.route(route.method, `${prefix}${route.path}`, (ctx: any) => Promise.resolve(instance[route.methodName](ctx)), route.options);
             })
         }
         return app;
