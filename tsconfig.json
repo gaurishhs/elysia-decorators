@@ -11,6 +11,8 @@
     "noUncheckedIndexedAccess": true,
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
+    "declaration": true,
+    "experimentalDecorators": true,
     "outDir": "dist",
     "lib": ["es2022"]
   },

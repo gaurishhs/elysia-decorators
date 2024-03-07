@@ -1,7 +1,7 @@
 {
   "name": "elysia-decorators",
   "description": "Plugin for Elysia for adding Typescript decorators",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "Gaurish Sethia",
     "url": "https://github.com/gaurishhs",
@@ -18,7 +18,7 @@
     "node": "./dist/index.js",
     "default": "./dist/index.js"
   },
-  "types": "./src/index.ts",
+  "types": "./dist/index.d.ts",
   "bugs": "https://github.com/gaurishhs/elysia-decorators/issues",
   "homepage": "https://github.com/gaurishhs/elysia-decorators",
   "keywords": [
@@ -33,15 +33,15 @@
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.2.1"
   },
   "devDependencies": {
-    "bun-types": "^1.0.21",
-    "elysia": "^0.3.0-rc.1",
+    "@types/bun": "^1.0.8",
+    "elysia": "^0.8.17",
     "eslint": "^8.26.0",
-    "typescript": "^4.9.4"
+    "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "elysia": ">= 0.2.0"
+    "elysia": ">= 0.8.0"
   }
 }

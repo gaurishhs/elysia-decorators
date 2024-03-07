@@ -17,8 +17,8 @@ export class ControllerManager {
             routes.forEach((route) => {
                 return SupportedMethodFunctions.includes(route.method.toLowerCase()) ?
                     // @ts-ignore
-                    app[route.method.toLowerCase() as any](`${prefix}${route.path}`, (ctx: any) => Promise.resolve(instance[route.methodName](ctx)), route.hook)
-                    : app.route(route.method, `${prefix}${route.path}`, (ctx: any) => Promise.resolve(instance[route.methodName](ctx)), route.hook);
+                    app[route.method.toLowerCase() as any](`${prefix}${route.path}`, (ctx: any) => Promise.resolve(instance[route.methodName](ctx)), route.options)
+                    : app.route(route.method, `${prefix}${route.path}`, (ctx: any) => Promise.resolve(instance[route.methodName](ctx)), route.options as any);
             })
         }
         return app;

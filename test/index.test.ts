@@ -1,6 +1,15 @@
-import { Controller, Get, Post, Delete, Patch, Put, Head, Custom } from '../src';
+import {
+    Controller,
+    Get,
+    Post,
+    Delete,
+    Patch,
+    Put,
+    Head,
+    Custom,
+} from '../src';
 import { describe, expect, it } from 'bun:test';
-import 'reflect-metadata'
+import 'reflect-metadata';
 
 export enum HttpMethods {
     GET = 'GET',
@@ -14,7 +23,7 @@ export enum HttpMethods {
 describe('@Controller decorator test', () => {
     it('should properly init data', () => {
         @Controller()
-        class Foo { }
+        class Foo {}
 
         expect(Reflect.getMetadata('prefix', Foo)).toBeUndefined;
         expect(Reflect.getMetadata('routes', Foo)).toEqual([]);
@@ -22,7 +31,7 @@ describe('@Controller decorator test', () => {
 
     it('should properly init data with prefix', () => {
         @Controller('/test')
-        class Foo { }
+        class Foo {}
 
         expect(Reflect.getMetadata('prefix', Foo)).toEqual('/test');
         expect(Reflect.getMetadata('routes', Foo)).toEqual([]);
@@ -67,16 +76,22 @@ for (const { name, method, decorator } of decorators) {
         it('should properly init data', () => {
             class Foo {
                 @decorator('/test')
-                test() { }
+                test() {}
             }
 
             const routes = Reflect.getMetadata('routes', Foo);
-            expect(routes).toEqual([{
-                method,
-                path: '/test',
-                methodName: 'test',
-                hook: undefined,
-            }]);
+            expect(routes).toEqual([
+                {
+                    method,
+                    path: '/test',
+                    methodName: 'test',
+                    options: {
+                        config: {
+                            allowMeta: false,
+                        },
+                    },
+                },
+            ]);
         });
     });
 }
@@ -85,15 +100,21 @@ describe('@Custom decorator test', () => {
     it('should properly init data', () => {
         class Foo {
             @Custom('M-SEARCH', '/test')
-            test() { }
+            test() {}
         }
 
         const routes = Reflect.getMetadata('routes', Foo);
-        expect(routes).toEqual([{
-            method: 'M-SEARCH',
-            path: '/test',
-            methodName: 'test',
-            hook: undefined,
-        }]);
+        expect(routes).toEqual([
+            {
+                method: 'M-SEARCH',
+                path: '/test',
+                methodName: 'test',
+                options: {
+                    config: {
+                        allowMeta: false,
+                    },
+                },
+            },
+        ]);
     });
 });

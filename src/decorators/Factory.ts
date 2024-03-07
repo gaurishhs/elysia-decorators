@@ -1,10 +1,10 @@
-import { HTTPMethod, LocalHook } from 'elysia'
-import { ElysiaRoute } from '../types'
+import { HTTPMethod } from 'elysia'
+import { Config, ElysiaRoute, Hook, RouteOptions } from '../types'
 
 const getMethodFunction = (
   method: HTTPMethod,
   path: string,
-  hook?: LocalHook
+  options?: RouteOptions
 ) => {
   return (target: any, propertyKey: any): void => {
     if (!Reflect.hasMetadata('routes', target.constructor)) {
@@ -20,26 +20,24 @@ const getMethodFunction = (
       path,
       method,
       methodName: propertyKey,
-      hook: hook
+      options,
     })
 
     Reflect.defineMetadata('routes', routes, target.constructor)
   }
 }
 
-export const Get = (path: string, hook?: LocalHook) =>
-  getMethodFunction('GET', path, hook)
-export const Post = (path: string, hook?: LocalHook) =>
-  getMethodFunction('POST', path, hook)
-export const Put = (path: string, hook?: LocalHook) =>
-  getMethodFunction('PUT', path, hook)
-export const Delete = (path: string, hook?: LocalHook) =>
-  getMethodFunction('DELETE', path, hook)
-export const Patch = (path: string, hook?: LocalHook) =>
-  getMethodFunction('PATCH', path, hook)
-export const Head = (path: string, hook?: LocalHook) =>
-  getMethodFunction('HEAD', path, hook)
-export const Options = (path: string, hook?: LocalHook) =>
-  getMethodFunction('OPTIONS', path, hook)
-export const Custom = (method: HTTPMethod, path: string, hook?: LocalHook) =>
-  getMethodFunction(method, path, hook)
+const createRouteMethod = (method: string) => (path: string, {config, ...hook}: RouteOptions = {config: {allowMeta: false}}) => getMethodFunction(method, path, {config, ...hook});
+
+export const Get = createRouteMethod('GET');
+export const Post = createRouteMethod('POST');
+export const Put = createRouteMethod('PUT');
+export const Delete = createRouteMethod('DELETE');
+export const Patch = createRouteMethod('PATCH');
+export const Head = createRouteMethod('HEAD');
+export const Options = createRouteMethod('OPTIONS');
+
+export const Custom = (method: string, path: string, {config, ...hook}: RouteOptions = {config: {allowMeta: false}}) => getMethodFunction(method, path, {config, ...hook});
+
+
+  
