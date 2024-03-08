@@ -1,5 +1,5 @@
 import { HTTPMethod } from 'elysia'
-import { Config, ElysiaRoute, Hook, RouteOptions } from '../types'
+import { ElysiaRoute, RouteOptions } from '../types'
 
 const getMethodFunction = (
   method: HTTPMethod,
