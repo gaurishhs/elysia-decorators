@@ -19,16 +19,16 @@ bun add elysia-decorators
 
 ## Example
 
-- [Demo](https://github.com/gaurishhs/elysia-controllers/tree/main/demo)
+- [Demo](https://github.com/gaurishhs/elysia-decorators/tree/main/demo)
 
 ```ts
 import { Controller, Get, decorators } from "elysia-decorators";
 import { Elysia } from "elysia";
 
 // /users prefix
-@Controller("/users/")
+@Controller("/users")
 class UsersController {
-  @Get("")
+  @Get()
   index() {
     return "Hello World";
   }
@@ -54,7 +54,7 @@ Note: When using File-based controllers Bun v1.0.14 or more is required since it
 The `Controller` decorator is used to mark a class as a controller. It takes a string as an argument which is the prefix for all the routes in that controller. The prefix can be empty.
 
 ```ts
-@Controller("/users/")
+@Controller("/users")
 class UsersController {
   // ...
 }
@@ -68,7 +68,7 @@ class UsersController {
 The method decorators are used to mark a method as a route. They take a string as an argument which is the path for the route. The path can be empty.
 
 ```ts
-@Controller("/users/")
+@Controller("/users")
 class UsersController {
   @Get()
   index() {
@@ -77,7 +77,7 @@ class UsersController {
 }
 ```
 
-The above code will create a route at `/users/` which will respond to `GET` requests.
+The above code will create a route at `/users` which will respond to `GET` requests.
 
 ---
 
@@ -86,7 +86,7 @@ The above code will create a route at `/users/` which will respond to `GET` requ
 You can use a custom method as well by using the `Custom` decorator. 
 
 ```ts
-@Controller("/users/")
+@Controller("/users")
 class UsersController {
   @Custom("M-SEARCH", "/")
   index() {
@@ -95,7 +95,7 @@ class UsersController {
 }
 ```
 
-The above code will create a route at `/users/` which will respond to `M-SEARCH` requests.
+The above code will create a route at `/users` which will respond to `M-SEARCH` requests.
 
 ## License
 
