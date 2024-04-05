@@ -1,7 +1,6 @@
-import 'reflect-metadata';
+import type Elysia from 'elysia';
 import { ControllersLoaderOptions, ElysiaRoute } from './types';
 import { importClassesFromDirectories } from './utils';
-import Elysia from 'elysia';
 
 export class ControllerManager {
     constructor(
