@@ -1,7 +1,24 @@
-import { HTTPMethod, LocalHook, InputSchema, DecoratorBase, DefinitionBase, RouteSchema, UnwrapRoute, MergeSchema } from "elysia";
+import {
+  DefinitionBase,
+  EphemeralType,
+  HTTPMethod,
+  InputSchema,
+  LocalHook,
+  MergeSchema,
+  SingletonBase,
+  UnwrapRoute,
+} from 'elysia';
+import { MetadataBase } from 'elysia/types';
 
 interface Container {
-    get(identifier: string | symbol): Function;
+  get(identifier: string | symbol): Function;
+}
+
+interface Singleton extends SingletonBase {
+  decorator: {};
+  store: {};
+  derive: {};
+  resolve: {};
 }
 
 interface Definitions extends DefinitionBase {
@@ -9,35 +26,52 @@ interface Definitions extends DefinitionBase {
   error: {};
 }
 
-interface Decorators extends DecoratorBase {
-  request: {};
-  store: {};
+interface Metadata extends MetadataBase {
+  schema: {};
+  macro: {};
+}
+
+interface Ephemeral extends EphemeralType {
   derive: {};
   resolve: {};
+  schema: {};
 }
 
-interface ParentSchema extends RouteSchema {}
-interface Macro extends Record<string, unknown> {}
+interface Volatile extends EphemeralType {
+  derive: {};
+  resolve: {};
+  schema: {};
+}
+
 interface LocalSchema extends InputSchema<keyof Definitions['type'] & string> {}
-interface Route extends MergeSchema<UnwrapRoute<LocalSchema, Definitions['type']>, ParentSchema> {}
+interface Schema
+  extends MergeSchema<
+    UnwrapRoute<LocalSchema, Definitions['type']>,
+    Metadata['schema'] & Ephemeral['schema'] & Volatile['schema']
+  > {}
 
 export interface ControllersLoaderOptions {
-    controllers: Function[] | string[];
-    container?: Container;
+  controllers: Function[] | string[];
+  container?: Container;
 }
 
-export interface Hook extends LocalHook<LocalSchema, Route, Decorators, Definitions['error'], Macro, any> {}
-export interface Config {
+interface Hook extends LocalHook<LocalSchema, Schema, 
+  Singleton & {
+    derive: Ephemeral['derive'] & Volatile['derive'];
+    resolve: Ephemeral['resolve'] & Volatile['resolve'];
+}, Definitions['error'], Metadata['macro'], string> {}
+
+interface Config {
   config: {
-    allowMeta?: boolean
-  }
+    allowMeta?: boolean;
+  };
 }
 
 export interface RouteOptions extends Hook, Config {}
 
 export interface ElysiaRoute {
-    method: HTTPMethod;
-    path: string;
-    methodName: string | symbol;
-    options?: RouteOptions,
+  method: HTTPMethod;
+  path: string;
+  methodName: string | symbol;
+  options?: RouteOptions;
 }
