@@ -27,7 +27,7 @@ const getMethodFunction = (
   }
 }
 
-const createRouteMethod = (method: string) => (path: string, {config, ...hook}: RouteOptions = {config: {allowMeta: false}}) => getMethodFunction(method, path, {config, ...hook});
+const createRouteMethod = (method: string) => (path = '/', {config, ...hook}: RouteOptions = {config: {allowMeta: false}}) => getMethodFunction(method, path, {config, ...hook});
 
 export const Get = createRouteMethod('GET');
 export const Post = createRouteMethod('POST');
