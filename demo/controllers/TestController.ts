@@ -1,20 +1,28 @@
-import { Controller, Get } from '../../src';
 import { t } from 'elysia';
+import { Controller, Get, Post } from '../../src';
 
 @Controller()
 export class TestController {
-    @Get('/', {
-      config: { allowMeta: true },
-      query: t.Object({
-        name: t.String(),
-      }),
-    })
-    hello({ query }: { query: { name: string } }) {
-      return 'Hello ' + query.name;
-    }
+  @Get('/', {
+    config: { allowMeta: false },
+    query: t.Object({
+      id: t.String(),
+    }),
+  })
+  async hello({ query }: { query: { id: string } }) {
+    return 'Hello ' + query.id;
+  }
 
-    @Get('bye')
-    bye() {
-      return 'Bye';
-    }
+  @Post('/publish', {
+    config: { allowMeta: false },
+    body: t.Object({
+      title: t.String(),
+      description: t.String(),
+    }),
+  })
+  async publish({ body }: { body: { title: string; description: string } }) {
+    return {
+      ...body,
+    };
+  }
 }
