@@ -1,5 +1,6 @@
 .git
 .gitignore
+.github
 .prettierrc
 .cjs.swcrc
 .es.swcrc
@@ -17,3 +18,4 @@ CHANGELOG.md
 .eslintrc.js
 tsconfig.cjs.json
 tsconfig.esm.json
+demo
