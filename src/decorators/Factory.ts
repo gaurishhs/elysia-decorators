@@ -36,6 +36,7 @@ export const Delete = createRouteMethod('DELETE');
 export const Patch = createRouteMethod('PATCH');
 export const Head = createRouteMethod('HEAD');
 export const Options = createRouteMethod('OPTIONS');
+export const Websocket = createRouteMethod("WS");
 
 export const Custom = (method: string, path: string, {config, ...hook}: RouteOptions = {config: {allowMeta: false}}) => getMethodFunction(method, path, {config, ...hook});
 
